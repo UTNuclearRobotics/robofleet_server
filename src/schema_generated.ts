@@ -2370,6 +2370,419 @@ static endVisualizationMsg(builder:flatbuffers.Builder):flatbuffers.Offset {
  * @constructor
  */
 export namespace fb.sensor_msgs{
+export class CompressedImage {
+  bb: flatbuffers.ByteBuffer|null = null;
+
+  bb_pos:number = 0;
+/**
+ * @param number i
+ * @param flatbuffers.ByteBuffer bb
+ * @returns CompressedImage
+ */
+__init(i:number, bb:flatbuffers.ByteBuffer):CompressedImage {
+  this.bb_pos = i;
+  this.bb = bb;
+  return this;
+};
+
+/**
+ * @param flatbuffers.ByteBuffer bb
+ * @param CompressedImage= obj
+ * @returns CompressedImage
+ */
+static getRootAsCompressedImage(bb:flatbuffers.ByteBuffer, obj?:CompressedImage):CompressedImage {
+  return (obj || new CompressedImage()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+};
+
+/**
+ * @param flatbuffers.ByteBuffer bb
+ * @param CompressedImage= obj
+ * @returns CompressedImage
+ */
+static getSizePrefixedRootAsCompressedImage(bb:flatbuffers.ByteBuffer, obj?:CompressedImage):CompressedImage {
+  bb.setPosition(bb.position() + flatbuffers.SIZE_PREFIX_LENGTH);
+  return (obj || new CompressedImage()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+};
+
+/**
+ * @param fb.MsgMetadata= obj
+ * @returns fb.MsgMetadata|null
+ */
+_metadata(obj?:fb.MsgMetadata):fb.MsgMetadata|null {
+  var offset = this.bb!.__offset(this.bb_pos, 4);
+  return offset ? (obj || new fb.MsgMetadata()).__init(this.bb!.__indirect(this.bb_pos + offset), this.bb!) : null;
+};
+
+/**
+ * @param fb.std_msgs.Header= obj
+ * @returns fb.std_msgs.Header|null
+ */
+header(obj?:fb.std_msgs.Header):fb.std_msgs.Header|null {
+  var offset = this.bb!.__offset(this.bb_pos, 6);
+  return offset ? (obj || new fb.std_msgs.Header()).__init(this.bb!.__indirect(this.bb_pos + offset), this.bb!) : null;
+};
+
+/**
+ * @param flatbuffers.Encoding= optionalEncoding
+ * @returns string|Uint8Array|null
+ */
+format():string|null
+format(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
+format(optionalEncoding?:any):string|Uint8Array|null {
+  var offset = this.bb!.__offset(this.bb_pos, 8);
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+};
+
+/**
+ * @param number index
+ * @returns number
+ */
+data(index: number):number|null {
+  var offset = this.bb!.__offset(this.bb_pos, 10);
+  return offset ? this.bb!.readUint8(this.bb!.__vector(this.bb_pos + offset) + index) : 0;
+};
+
+/**
+ * @returns number
+ */
+dataLength():number {
+  var offset = this.bb!.__offset(this.bb_pos, 10);
+  return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
+};
+
+/**
+ * @returns Uint8Array
+ */
+dataArray():Uint8Array|null {
+  var offset = this.bb!.__offset(this.bb_pos, 10);
+  return offset ? new Uint8Array(this.bb!.bytes().buffer, this.bb!.bytes().byteOffset + this.bb!.__vector(this.bb_pos + offset), this.bb!.__vector_len(this.bb_pos + offset)) : null;
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ */
+static startCompressedImage(builder:flatbuffers.Builder) {
+  builder.startObject(4);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @param flatbuffers.Offset _metadataOffset
+ */
+static add_Metadata(builder:flatbuffers.Builder, _metadataOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(0, _metadataOffset, 0);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @param flatbuffers.Offset headerOffset
+ */
+static addHeader(builder:flatbuffers.Builder, headerOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(1, headerOffset, 0);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @param flatbuffers.Offset formatOffset
+ */
+static addFormat(builder:flatbuffers.Builder, formatOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(2, formatOffset, 0);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @param flatbuffers.Offset dataOffset
+ */
+static addData(builder:flatbuffers.Builder, dataOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(3, dataOffset, 0);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @param Array.<number> data
+ * @returns flatbuffers.Offset
+ */
+static createDataVector(builder:flatbuffers.Builder, data:number[] | Uint8Array):flatbuffers.Offset {
+  builder.startVector(1, data.length, 1);
+  for (var i = data.length - 1; i >= 0; i--) {
+    builder.addInt8(data[i]);
+  }
+  return builder.endVector();
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @param number numElems
+ */
+static startDataVector(builder:flatbuffers.Builder, numElems:number) {
+  builder.startVector(1, numElems, 1);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @returns flatbuffers.Offset
+ */
+static endCompressedImage(builder:flatbuffers.Builder):flatbuffers.Offset {
+  var offset = builder.endObject();
+  builder.requiredField(offset, 6); // header
+  builder.requiredField(offset, 8); // format
+  builder.requiredField(offset, 10); // data
+  return offset;
+};
+
+}
+}
+/**
+ * @constructor
+ */
+export namespace fb.amrl_msgs{
+export class DetectedItem {
+  bb: flatbuffers.ByteBuffer|null = null;
+
+  bb_pos:number = 0;
+/**
+ * @param number i
+ * @param flatbuffers.ByteBuffer bb
+ * @returns DetectedItem
+ */
+__init(i:number, bb:flatbuffers.ByteBuffer):DetectedItem {
+  this.bb_pos = i;
+  this.bb = bb;
+  return this;
+};
+
+/**
+ * @param flatbuffers.ByteBuffer bb
+ * @param DetectedItem= obj
+ * @returns DetectedItem
+ */
+static getRootAsDetectedItem(bb:flatbuffers.ByteBuffer, obj?:DetectedItem):DetectedItem {
+  return (obj || new DetectedItem()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+};
+
+/**
+ * @param flatbuffers.ByteBuffer bb
+ * @param DetectedItem= obj
+ * @returns DetectedItem
+ */
+static getSizePrefixedRootAsDetectedItem(bb:flatbuffers.ByteBuffer, obj?:DetectedItem):DetectedItem {
+  bb.setPosition(bb.position() + flatbuffers.SIZE_PREFIX_LENGTH);
+  return (obj || new DetectedItem()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+};
+
+/**
+ * @param fb.MsgMetadata= obj
+ * @returns fb.MsgMetadata|null
+ */
+_metadata(obj?:fb.MsgMetadata):fb.MsgMetadata|null {
+  var offset = this.bb!.__offset(this.bb_pos, 4);
+  return offset ? (obj || new fb.MsgMetadata()).__init(this.bb!.__indirect(this.bb_pos + offset), this.bb!) : null;
+};
+
+/**
+ * @param flatbuffers.Encoding= optionalEncoding
+ * @returns string|Uint8Array|null
+ */
+name():string|null
+name(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
+name(optionalEncoding?:any):string|Uint8Array|null {
+  var offset = this.bb!.__offset(this.bb_pos, 6);
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+};
+
+/**
+ * @param flatbuffers.Encoding= optionalEncoding
+ * @returns string|Uint8Array|null
+ */
+repID():string|null
+repID(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
+repID(optionalEncoding?:any):string|Uint8Array|null {
+  var offset = this.bb!.__offset(this.bb_pos, 8);
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+};
+
+/**
+ * @param flatbuffers.Encoding= optionalEncoding
+ * @returns string|Uint8Array|null
+ */
+anchorID():string|null
+anchorID(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
+anchorID(optionalEncoding?:any):string|Uint8Array|null {
+  var offset = this.bb!.__offset(this.bb_pos, 10);
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+};
+
+/**
+ * @returns number
+ */
+x():number {
+  var offset = this.bb!.__offset(this.bb_pos, 12);
+  return offset ? this.bb!.readFloat64(this.bb_pos + offset) : 0.0;
+};
+
+/**
+ * @returns number
+ */
+y():number {
+  var offset = this.bb!.__offset(this.bb_pos, 14);
+  return offset ? this.bb!.readFloat64(this.bb_pos + offset) : 0.0;
+};
+
+/**
+ * @returns number
+ */
+z():number {
+  var offset = this.bb!.__offset(this.bb_pos, 16);
+  return offset ? this.bb!.readFloat64(this.bb_pos + offset) : 0.0;
+};
+
+/**
+ * @returns number
+ */
+lat():number {
+  var offset = this.bb!.__offset(this.bb_pos, 18);
+  return offset ? this.bb!.readFloat64(this.bb_pos + offset) : 0.0;
+};
+
+/**
+ * @returns number
+ */
+lon():number {
+  var offset = this.bb!.__offset(this.bb_pos, 20);
+  return offset ? this.bb!.readFloat64(this.bb_pos + offset) : 0.0;
+};
+
+/**
+ * @returns number
+ */
+elv():number {
+  var offset = this.bb!.__offset(this.bb_pos, 22);
+  return offset ? this.bb!.readFloat64(this.bb_pos + offset) : 0.0;
+};
+
+/**
+ * @param fb.sensor_msgs.CompressedImage= obj
+ * @returns fb.sensor_msgs.CompressedImage|null
+ */
+cmprImage(obj?:fb.sensor_msgs.CompressedImage):fb.sensor_msgs.CompressedImage|null {
+  var offset = this.bb!.__offset(this.bb_pos, 24);
+  return offset ? (obj || new fb.sensor_msgs.CompressedImage()).__init(this.bb!.__indirect(this.bb_pos + offset), this.bb!) : null;
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ */
+static startDetectedItem(builder:flatbuffers.Builder) {
+  builder.startObject(11);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @param flatbuffers.Offset _metadataOffset
+ */
+static add_Metadata(builder:flatbuffers.Builder, _metadataOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(0, _metadataOffset, 0);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @param flatbuffers.Offset nameOffset
+ */
+static addName(builder:flatbuffers.Builder, nameOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(1, nameOffset, 0);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @param flatbuffers.Offset repIDOffset
+ */
+static addRepID(builder:flatbuffers.Builder, repIDOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(2, repIDOffset, 0);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @param flatbuffers.Offset anchorIDOffset
+ */
+static addAnchorID(builder:flatbuffers.Builder, anchorIDOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(3, anchorIDOffset, 0);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @param number x
+ */
+static addX(builder:flatbuffers.Builder, x:number) {
+  builder.addFieldFloat64(4, x, 0.0);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @param number y
+ */
+static addY(builder:flatbuffers.Builder, y:number) {
+  builder.addFieldFloat64(5, y, 0.0);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @param number z
+ */
+static addZ(builder:flatbuffers.Builder, z:number) {
+  builder.addFieldFloat64(6, z, 0.0);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @param number lat
+ */
+static addLat(builder:flatbuffers.Builder, lat:number) {
+  builder.addFieldFloat64(7, lat, 0.0);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @param number lon
+ */
+static addLon(builder:flatbuffers.Builder, lon:number) {
+  builder.addFieldFloat64(8, lon, 0.0);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @param number elv
+ */
+static addElv(builder:flatbuffers.Builder, elv:number) {
+  builder.addFieldFloat64(9, elv, 0.0);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @param flatbuffers.Offset cmprImageOffset
+ */
+static addCmprImage(builder:flatbuffers.Builder, cmprImageOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(10, cmprImageOffset, 0);
+};
+
+/**
+ * @param flatbuffers.Builder builder
+ * @returns flatbuffers.Offset
+ */
+static endDetectedItem(builder:flatbuffers.Builder):flatbuffers.Offset {
+  var offset = builder.endObject();
+  builder.requiredField(offset, 6); // name
+  builder.requiredField(offset, 8); // repID
+  builder.requiredField(offset, 10); // anchorID
+  builder.requiredField(offset, 24); // cmpr_image
+  return offset;
+};
+
+}
+}
+/**
+ * @constructor
+ */
+export namespace fb.sensor_msgs{
 export class NavSatStatus {
   bb: flatbuffers.ByteBuffer|null = null;
 
@@ -3014,172 +3427,6 @@ static endLaserScan(builder:flatbuffers.Builder):flatbuffers.Offset {
   builder.requiredField(offset, 6); // header
   builder.requiredField(offset, 22); // ranges
   builder.requiredField(offset, 24); // intensities
-  return offset;
-};
-
-}
-}
-/**
- * @constructor
- */
-export namespace fb.sensor_msgs{
-export class CompressedImage {
-  bb: flatbuffers.ByteBuffer|null = null;
-
-  bb_pos:number = 0;
-/**
- * @param number i
- * @param flatbuffers.ByteBuffer bb
- * @returns CompressedImage
- */
-__init(i:number, bb:flatbuffers.ByteBuffer):CompressedImage {
-  this.bb_pos = i;
-  this.bb = bb;
-  return this;
-};
-
-/**
- * @param flatbuffers.ByteBuffer bb
- * @param CompressedImage= obj
- * @returns CompressedImage
- */
-static getRootAsCompressedImage(bb:flatbuffers.ByteBuffer, obj?:CompressedImage):CompressedImage {
-  return (obj || new CompressedImage()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
-};
-
-/**
- * @param flatbuffers.ByteBuffer bb
- * @param CompressedImage= obj
- * @returns CompressedImage
- */
-static getSizePrefixedRootAsCompressedImage(bb:flatbuffers.ByteBuffer, obj?:CompressedImage):CompressedImage {
-  bb.setPosition(bb.position() + flatbuffers.SIZE_PREFIX_LENGTH);
-  return (obj || new CompressedImage()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
-};
-
-/**
- * @param fb.MsgMetadata= obj
- * @returns fb.MsgMetadata|null
- */
-_metadata(obj?:fb.MsgMetadata):fb.MsgMetadata|null {
-  var offset = this.bb!.__offset(this.bb_pos, 4);
-  return offset ? (obj || new fb.MsgMetadata()).__init(this.bb!.__indirect(this.bb_pos + offset), this.bb!) : null;
-};
-
-/**
- * @param fb.std_msgs.Header= obj
- * @returns fb.std_msgs.Header|null
- */
-header(obj?:fb.std_msgs.Header):fb.std_msgs.Header|null {
-  var offset = this.bb!.__offset(this.bb_pos, 6);
-  return offset ? (obj || new fb.std_msgs.Header()).__init(this.bb!.__indirect(this.bb_pos + offset), this.bb!) : null;
-};
-
-/**
- * @param flatbuffers.Encoding= optionalEncoding
- * @returns string|Uint8Array|null
- */
-format():string|null
-format(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
-format(optionalEncoding?:any):string|Uint8Array|null {
-  var offset = this.bb!.__offset(this.bb_pos, 8);
-  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
-};
-
-/**
- * @param number index
- * @returns number
- */
-data(index: number):number|null {
-  var offset = this.bb!.__offset(this.bb_pos, 10);
-  return offset ? this.bb!.readUint8(this.bb!.__vector(this.bb_pos + offset) + index) : 0;
-};
-
-/**
- * @returns number
- */
-dataLength():number {
-  var offset = this.bb!.__offset(this.bb_pos, 10);
-  return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
-};
-
-/**
- * @returns Uint8Array
- */
-dataArray():Uint8Array|null {
-  var offset = this.bb!.__offset(this.bb_pos, 10);
-  return offset ? new Uint8Array(this.bb!.bytes().buffer, this.bb!.bytes().byteOffset + this.bb!.__vector(this.bb_pos + offset), this.bb!.__vector_len(this.bb_pos + offset)) : null;
-};
-
-/**
- * @param flatbuffers.Builder builder
- */
-static startCompressedImage(builder:flatbuffers.Builder) {
-  builder.startObject(4);
-};
-
-/**
- * @param flatbuffers.Builder builder
- * @param flatbuffers.Offset _metadataOffset
- */
-static add_Metadata(builder:flatbuffers.Builder, _metadataOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(0, _metadataOffset, 0);
-};
-
-/**
- * @param flatbuffers.Builder builder
- * @param flatbuffers.Offset headerOffset
- */
-static addHeader(builder:flatbuffers.Builder, headerOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(1, headerOffset, 0);
-};
-
-/**
- * @param flatbuffers.Builder builder
- * @param flatbuffers.Offset formatOffset
- */
-static addFormat(builder:flatbuffers.Builder, formatOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(2, formatOffset, 0);
-};
-
-/**
- * @param flatbuffers.Builder builder
- * @param flatbuffers.Offset dataOffset
- */
-static addData(builder:flatbuffers.Builder, dataOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(3, dataOffset, 0);
-};
-
-/**
- * @param flatbuffers.Builder builder
- * @param Array.<number> data
- * @returns flatbuffers.Offset
- */
-static createDataVector(builder:flatbuffers.Builder, data:number[] | Uint8Array):flatbuffers.Offset {
-  builder.startVector(1, data.length, 1);
-  for (var i = data.length - 1; i >= 0; i--) {
-    builder.addInt8(data[i]);
-  }
-  return builder.endVector();
-};
-
-/**
- * @param flatbuffers.Builder builder
- * @param number numElems
- */
-static startDataVector(builder:flatbuffers.Builder, numElems:number) {
-  builder.startVector(1, numElems, 1);
-};
-
-/**
- * @param flatbuffers.Builder builder
- * @returns flatbuffers.Offset
- */
-static endCompressedImage(builder:flatbuffers.Builder):flatbuffers.Offset {
-  var offset = builder.endObject();
-  builder.requiredField(offset, 6); // header
-  builder.requiredField(offset, 8); // format
-  builder.requiredField(offset, 10); // data
   return offset;
 };
 
